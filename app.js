@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
+
 
 // import routes 
 const pilotRoutes = require('./routes/pilotRoutes');
@@ -7,6 +9,10 @@ const sequelize = require('./util/db');
 
 
 // configurations
+
+
+// models associations
+
 
 
 const app = express()
@@ -32,8 +38,13 @@ const PORT  = 5000;
 app.use(pilotRoutes);
 
 
+
+
+// defining associations 
+
+
 // database connection and start the server 
-// sequelize.sync({alter:true}) // drop the table if they exists
+// sequelize.sync({force:true}) // drop the table if they exists
 sequelize.sync()
 .then((result) => {
     app.listen(5000, () => {
